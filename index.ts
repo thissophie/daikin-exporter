@@ -74,10 +74,6 @@ app.get('/', (req, res) => {
   res.redirect('/metrics');
 });
 
-app.get('/env', (req, res) => {
-  res.contentType('text/plain').send(JSON.stringify(process.env, null, 2));
-});
-
 app.get('/metrics', (req, res) => {
   (async () => {
     res.contentType('text/plain').send(await registry.metrics());
@@ -91,7 +87,7 @@ app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
 });
 
-console.log(`Running on ${process.arch}`);
+console.log(`Running on ${process.arch}, polling AC unit at ${AC_IP}`);
 
 // GET_BASIC_INFO = '/common/basic_info',
 // GET_MODEL_INFO = '/aircon/get_model_info',
